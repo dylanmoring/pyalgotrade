@@ -445,7 +445,7 @@ class StrategyPlotter(object):
         fig.autofmt_xdate()
         return fig, mplSubplots
 
-    def plot(self, fromDateTime=None, toDateTime=None, postPlotFun=_post_plot_fun):
+    def plot(self, fromDateTime=None, toDateTime=None, postPlotFun=_post_plot_fun, figsize=(6.4, 4.8)):
         """
         Plot the strategy execution. Must be called after running the strategy.
 
@@ -457,6 +457,7 @@ class StrategyPlotter(object):
 
         fig, mplSubplots = self.__buildFigureImpl(fromDateTime, toDateTime, postPlotFun=postPlotFun)
         fig.autofmt_xdate()
+        fig.set_size_inches(figsize)
         plt.show()
 
     def savePlot(self, filename, dpi=None, format="png", fromDateTime=None, toDateTime=None):
@@ -472,6 +473,7 @@ class StrategyPlotter(object):
         :type toDateTime: datetime.datetime
         """
 
-        fig, mplSubplots = self.__buildFigureImpl(fromDateTime=fromDateTime, toDateTime=toDateTime)
+        fig, mplSubplots = self.__buildFigureImpl(fromDateTime=fromDateTime, toDateTime=toDateTime, figsize=(6.4, 4.8))
         fig.autofmt_xdate()
+        fig.set_size_inches(figsize)
         fig.savefig(filename, dpi=dpi, bbox_inches="tight", format=format)
